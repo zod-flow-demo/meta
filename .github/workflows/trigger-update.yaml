@@ -6,11 +6,20 @@ on:
       - main
 
 jobs:
-  trigger-update:
+  trigger-frontend-update:
     runs-on: ubuntu-latest
     steps:
       - uses: zzzze/webhook-trigger@master
         with:
           data: '{"ref":"main"}'
-          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_url: ${{ secrets.FRONTEND_WEBHOOK_URL }}
+          options: '-H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28"'
+          
+  trigger-backend-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: zzzze/webhook-trigger@master
+        with:
+          data: '{"ref":"main"}'
+          webhook_url: ${{ secrets.BACKEND_WEBHOOK_URL }}
           options: '-H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28"'
