@@ -1,0 +1,16 @@
+name: Trigger Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: zzzze/webhook-trigger@master
+        with:
+          data: '{"ref":"main"}'
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          options: '-H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28"'
