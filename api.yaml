@@ -119,7 +119,7 @@ components:
         title:
           type: string
           description: The title of the todo item
-          maxLength: 20
+          maxLength: 1
         completed:
           type: boolean
           description: Whether the todo item is completed or not
@@ -134,7 +134,7 @@ components:
         title:
           type: string
           description: The title of the new todo item
-          maxLength: 20
+          maxLength: 1
       required:
         - title
 
